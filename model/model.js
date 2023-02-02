@@ -16,7 +16,7 @@ const messageSchema = new mongoose.Schema({
     },
     message:{
         type:String,
-        require:[true,"plz provide email"],
+        require:true
     },
 })
 const Message =mongoose.model('Message',messageSchema)
