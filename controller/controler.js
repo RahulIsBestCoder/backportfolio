@@ -1,6 +1,11 @@
 const Msg = require("../model/model");
 require("dotenv").config();
 
+exports.welcome = async (req, res) => {
+	res.send({
+		msg:"you are welcome to backend"
+	})
+};
 exports.Data = async (req, res) => {
 	try {
 		const result = await Msg.find();
