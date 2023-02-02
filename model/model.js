@@ -3,17 +3,20 @@ const messageSchema = new mongoose.Schema({
     id:mongoose.Schema.Types.ObjectId,
     name: {
         type: String,
-        require:true
+        trim:true, //trim is use to eleminate space in fron and end of the string
+        require:[true,"plz provide email"],
     },
     email: {
         type: String,
-        require:true
-
+        trim:true,
+        lowercase: true,
+        unique: true,
+        required: 'Email address is required',
+        match: [/^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/, 'Please fill a valid email address']
     },
     message:{
         type:String,
-        require:true
-
+        require:[true,"plz provide email"],
     },
 })
 const Message =mongoose.model('Message',messageSchema)
