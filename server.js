@@ -4,6 +4,7 @@ const mongoose=require('mongoose');
 const bodyParser=require('body-parser')
 require("dotenv").config();
 const database = mongoose.set('strictQuery', true);
+console.log(new Date());
 mongoose.connect(process.env.DB);
 
 mongoose.connection.on('error',err=>{
