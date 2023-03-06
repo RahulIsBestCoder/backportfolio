@@ -1,13 +1,9 @@
 const Msg = require("../model/model");
 require("dotenv").config();
-
-exports.welcome = async (req, res) => {
-	res.send({
-		msg:"you are welcome to backend"
-	})
-};
+const DATE=new Date().toLocaleDateString().slice(0,10)
 exports.Data = async (req, res) => {
 	try {
+		console.log("get hit");
 		const result = await Msg.find();
 		if (result) {
 			res.status(200).json({
@@ -23,9 +19,10 @@ exports.Data = async (req, res) => {
 
 exports.dataPost = async (req, res) => {
 	try {
+		console.log("post hit");
 		const Msge = new Msg(req.body);
 		const result = await Msge.save();
-		res.json({
+		res.status(200).json({
 			Msge: result,
 		});
 	} catch (err) {
@@ -40,3 +37,21 @@ exports.dataPost = async (req, res) => {
 		});}
 	}
 };
+ exports.dataUpdate=async (req,res)=>{
+	try{
+		console.log("hi put")
+		const result = await Msg.findByIdAndUpdate(req.params.id,
+			req.body , {
+				new: true,
+				runValidator: true,
+			  }
+		)
+		console.log(result);
+		res.status(200).json({
+			result
+		})
+	}
+	catch(err){
+		console.log(err);
+	}
+ }

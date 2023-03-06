@@ -1,7 +1,7 @@
 const mongoose =require("mongoose")
 const messageSchema = new mongoose.Schema({
     id:mongoose.Schema.Types.ObjectId,
-    name: {
+    userName: {
         type: String,
         trim:true, //trim is use to eleminate space in fron and end of the string
         require:[true,"plz provide email"],

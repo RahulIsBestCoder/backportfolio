@@ -13,7 +13,9 @@ mongoose.connection.on('error',err=>{
 mongoose.connection.on('connected',connected=>{
     console.log('connection established with data base....');
 })
-
+// without cors you cant use axios in front end
+var cors = require('cors');
+app.use(cors({origin: true, credentials: true}));
 app.use(bodyParser.urlencoded({extended:false}));
 app.use(bodyParser.json());
 const Route=require('./route/router');
